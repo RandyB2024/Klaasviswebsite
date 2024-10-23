@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assurantiekantoor</title>
+    <title>Assurantiekantoor Klaas Vis</title>
+	    <title>Assurantiekantoor Klaas Vis</title>
+	<link rel="icon" href="C:\Users\Randy\OneDrive\Bureaublad\Klaas Vis\Nieuwste programma\logo.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -174,6 +176,48 @@
             text-align: center; /* Centreer de tekst */
             margin-top: 20px; /* Ruimte boven de tekst */
         }
+		        .mobile-view {
+            display: none;
+        }
+
+        .mobile-view {
+            display: none;
+        }
+
+        .mobile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .mobile .menu {
+            flex-direction: column;
+        }
+
+        /* Button styles */
+        #toggle-view {
+            background-color: rgba(0, 51, 160, 0.9);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        #toggle-view:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        #toggle-view i {
+            margin-right: 5px;
+        }
     </style>
 </head>
 <body>
@@ -182,12 +226,14 @@
 <div class="hero">
     <div class="logo">
         <img src="Logo-2.webp" alt="Dekker Autoverzekering">
+
     </div>
     <div class="scroll-down">&#x25BC;</div> <!-- Pijl naar beneden -->
 </div>
 
 <!-- Menubalk onder de afbeelding -->
 <nav class="menu">
+    <a href="mobielewebsite.html" class="menu-item">Mobiele Versie</a>
 	 <a href="#Inloggen" class="menu-item">Inloggen Portaal</a>
     <a href="#schade" class="menu-item">Schade melden</a>
     <a href="#wijziging" class="menu-item">Doorgeven wijziging</a>
@@ -197,7 +243,7 @@
     <a href="#downloads" class="menu-item">Downloads</a>
     <a href="#contact" class="menu-item">Contact</a>
 </nav>
-
+		<button id="toggle-view"> Ga naar de smartphone weergave</button>
 <!-- Container voor de secties "Wie wij zijn" en "Wat wij doen" -->
 <div class="container">
     <!-- Sectie "Wie wij zijn" -->
@@ -291,6 +337,18 @@
             if (revealTop < windowHeight - revealPoint) {
                 reveals[i].style.opacity = '1';
                 reveals[i].style.transform = 'translateY(0)';
+   // Toggle mobile view
+    const toggleButton = document.getElementById('toggle-view');
+    toggleButton.addEventListener('click', () => {
+        document.body.classList.toggle('mobile-view');
+        if (document.body.classList.contains('mobile-view')) {
+            toggleButton.innerHTML = '<i class="fas fa-desktop"></i> Schakel naar Desktop Versie';
+            document.querySelector('.menu').classList.add('mobile');
+        } else {
+            toggleButton.innerHTML = '<i class="fas fa-mobile-alt"></i> Schakel naar Mobiele Versie';
+            document.querySelector('.menu').classList.remove('mobile');
+        }
+    })
             }
         }
     }

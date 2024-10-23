@@ -1,4 +1,321 @@
-/* Basis lay-out voor desktop weergave (standaard) blijft ongewijzigd */
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assurantiekantoor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .hero {
+            height: 100vh;
+            background: url('hero.jpeg') no-repeat center center/cover;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            z-index: 0;
+        }
+
+        /* Stilstaande diagonale lijnen in dezelfde kleur als de menubalk */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                rgba(0, 51, 160, 0.9) 25%, /* Kleur menubalk */
+                transparent 25.5%,
+                transparent 50%,
+                rgba(0, 51, 160, 0.9) 50.5%, /* Kleur menubalk */
+                rgba(0, 51, 160, 0.9) 75%,
+                transparent 75.5%
+            );
+            z-index: 1;
+        }
+
+        .logo {
+            position: relative;
+            z-index: 2;
+            background-color: rgba(255, 255, 255, 0.6); /* Lichtere achtergrond voor logo */
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 50px rgba(255, 255, 255, 1); /* Lichter en stralender logo */
+        }
+
+        .logo img {
+            width: 220px;
+        }
+
+        /* Knipperende pijl naar beneden */
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: white;
+            animation: blink 1s infinite;
+            z-index: 2;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Menubalk onder de afbeelding */
+        .menu {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(0, 51, 160, 0.9);
+            padding: 15px 0;
+            position: relative;
+        }
+
+        .menu-item {
+            margin: 0 10px;
+            padding: 10px 15px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .menu-item:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(5px);
+        }
+
+        /* Container voor de secties "Wie wij zijn" en "Wat wij doen" */
+        .container {
+            display: flex;
+            justify-content: space-between; /* Zorgt voor ruimte tussen de vakken */
+            padding: 40px 20px;
+            margin: 40px auto;
+            max-width: 1200px; /* Maximale breedte van de container */
+        }
+
+        .about {
+            display: flex;
+            width: 60%; /* Vakken zijn smaller dan 100% van de container */
+            background-color: white;
+            border: 1px solid lightblue; /* Lichte blauwe rand om de secties */
+            border-radius: 10px; /* Ronde hoeken */
+            padding: 20px; /* Padding binnen de secties */
+            opacity: 0; /* Begin met een verborgen sectie voor animatie */
+            transform: translateY(20px); /* Begin met een lichte verschuiving */
+            transition: opacity 0.5s ease, transform 0.5s ease; /* Animatie-instellingen */
+        }
+
+        .about img {
+            width: 40%; /* Breedte van de afbeelding */
+            border-radius: 10px; /* Ronde hoeken */
+            margin-right: 20px; /* Ruimte onder de afbeelding */
+        }
+
+        .about h3 {
+            text-align: left; /* Links uitlijnen */
+            font-weight: bold; /* Dikke titel */
+            margin-bottom: 10px; /* Ruimte onder de titel */
+        }
+
+        .services {
+            width: 35%; /* Zorg ervoor dat de vakken niet te breed zijn */
+            background-color: white;
+            border: 1px solid lightblue; /* Lichte blauwe rand om de secties */
+            border-radius: 10px; /* Ronde hoeken */
+            padding: 20px; /* Padding binnen de secties */
+            opacity: 0; /* Begin met een verborgen sectie voor animatie */
+            transform: translateY(20px); /* Begin met een lichte verschuiving */
+            transition: opacity 0.5s ease, transform 0.5s ease; /* Animatie-instellingen */
+        }
+
+        .services h3 {
+            text-align: center; /* Centreer de titel */
+            font-weight: bold; /* Dikke titel */
+            margin-bottom: 10px; /* Ruimte onder de titel */
+        }
+
+        /* Sectie voor het logo en de tekst */
+        .logo-section {
+            display: flex;
+            flex-direction: column; /* Plaats tekst onder de afbeelding */
+            align-items: center; /* Centreer inhoud */
+            padding: 40px 20px;
+            background-color: white;
+            border: 1px solid lightblue; /* Lichte blauwe rand */
+            border-radius: 10px; /* Ronde hoeken */
+            margin: 40px auto; /* Auto marges voor centrering */
+            max-width: 600px; /* Maximale breedte van de sectie */
+            opacity: 0; /* Begin met een verborgen sectie voor animatie */
+            transform: translateY(20px); /* Begin met een lichte verschuiving */
+            transition: opacity 0.5s ease, transform 0.5s ease; /* Animatie-instellingen */
+        }
+
+        .logo-section img {
+            width: 80%; /* Breedte van de logo afbeelding */
+            border-radius: 10px; /* Ronde hoeken */
+        }
+
+        .logo-section p {
+            text-align: center; /* Centreer de tekst */
+            margin-top: 20px; /* Ruimte boven de tekst */
+        }
+    </style>
+</head>
+<body>
+
+<!-- Hero Afbeelding met stilstaande diagonale lijnen in dezelfde kleur als de menubalk -->
+<div class="hero">
+    <div class="logo">
+        <img src="Logo-2.webp" alt="Dekker Autoverzekering">
+    </div>
+    <div class="scroll-down">&#x25BC;</div> <!-- Pijl naar beneden -->
+</div>
+
+<!-- Menubalk onder de afbeelding -->
+<nav class="menu">
+	 <a href="#Inloggen" class="menu-item">Inloggen Portaal</a>
+    <a href="#schade" class="menu-item">Schade melden</a>
+    <a href="#wijziging" class="menu-item">Doorgeven wijziging</a>
+    <a href="#dekker" class="menu-item">Dekker Autoverzekering</a>
+    <a href="#offerte" class="menu-item">Offerte aanvragen</a>
+    <a href="#polis" class="menu-item">Mijn NH1816 Polis</a>
+    <a href="#downloads" class="menu-item">Downloads</a>
+    <a href="#contact" class="menu-item">Contact</a>
+</nav>
+
+<!-- Container voor de secties "Wie wij zijn" en "Wat wij doen" -->
+<div class="container">
+    <!-- Sectie "Wie wij zijn" -->
+    <div class="about" id="over-ons">
+        <img src="kantoor.jpg" alt="Afbeelding van het kantoor"> <!-- Vervang met je afbeelding -->
+        <div>
+            <h3>BV Assurantiekantoor Klaas Vis Ao. 1834</h3> <!-- Dikke titel -->
+            <p>
+                 bestaat al 190 jaar en behoort daardoor bij de oudste Zaanse bedrijven. Omdat wij niet gebonden zijn aan een verzekeringsmaatschappij of bankinstelling, is elk advies dat u krijgt onafhankelijk.
+            </p>
+            <p>
+                Met een sterk team dat gediplomeerd is op basis van assurantiekennis en waarvan elke medewerker beschikt over een specialistische opleiding op zijn/haar vakgebied, staan wij garant voor kennis en kunde van ieder facet van het verzekeren. Onze werkwijze onderschrijft de advieswijzer, opgesteld door het Verbond van Verzekeraars en de diverse brancheorganisaties.
+            </p>
+        </div>
+    </div>
+
+    <!-- Sectie "Wat wij doen" -->
+    <div class="services" id="wat-wij-doen">
+        <h3>Wat wij aanbieden</h3> <!-- Dikke titel -->
+        <p>
+        </p>
+    <ul>
+        <li><strong>Totaalpakket aan schadeverzekeringen:</strong>
+            <ul>
+                <li>Particuliere en zakelijke schadeverzekeringen op maat.</li>
+                <li>Resultaat: goed verzekerd, maar niet overmatig verzekerd.</li>
+            </ul>
+        </li>
+		<br>
+        <li><strong>Uitgebreide service bij schade:</strong>
+            <ul>
+                <li>Snel en soepel schadeafhandeling.</li>
+                <li>Ondersteuning, zelfs als u niet verzekerd bent.</li>
+                <li>Mogelijkheid om een verhaalsactie op te starten indien gewenst.</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+    </div>
+</div>
+
+<!-- Sectie voor het logo en de tekst -->
+<div class="logo-section">
+    <img src="afbeeldingDekker.png" alt="Dekker Autoverzekering Logo"> <!-- Voeg de afbeelding hier in -->
+    <p>
+        Om haar klanten optimale service te verlenen heeft Dekkerautogroep in samenwerking met BV Assurantiekantoor Klaas Vis Ao. 1834 de speciale Dekker Autoverzekering ontwikkeld.
+        Naast een scherpe collectieve premie, zijn ook de kwalitatief hoogwaardige voorwaarden van ASR Verzekeringen NV van toepassing.
+    </p>
+</div>
+
+<script>
+    const aboutSection = document.querySelector('.about');
+    const servicesSection = document.querySelector('.services');
+    const logoSection = document.querySelector('.logo-section');
+
+    const observerOptions = {
+        root: null,
+        threshold: 0.1 // Komt in zicht als 10% zichtbaar is
+    };
+
+    const observerCallback = (entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = 1; // Maak zichtbaar
+                entry.target.style.transform = 'translateY(0)'; // Reset verschuiving
+                observer.unobserve(entry.target); // Stop met observeren
+            }
+        });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    observer.observe(aboutSection); // Observeer de "Wie wij zijn" sectie
+    observer.observe(servicesSection); // Observeer de "Wat wij doen" sectie
+    observer.observe(logoSection); // Observeer de logo sectie
+    // Automatisch scrollen na 1 seconde
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+        }, 500);
+    });
+
+    // Animatie voor het tevoorschijn komen van secties bij scrollen
+    function revealOnScroll() {
+        var reveals = document.querySelectorAll('.about, .services, .logo-section');
+        for (var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var revealTop = reveals[i].getBoundingClientRect().top;
+            var revealPoint = 150;
+
+            if (revealTop < windowHeight - revealPoint) {
+                reveals[i].style.opacity = '1';
+                reveals[i].style.transform = 'translateY(0)';
+            }
+        }
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assurantiekantoor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        ./* Basis lay-out voor desktop weergave (standaard) blijft ongewijzigd */
 
 /* Responsieve aanpassingen voor mobiele apparaten */
 @media (max-width: 768px) {
@@ -88,3 +405,12 @@
         padding: 10px; /* Verminder padding voor de inhoudssecties */
     }
 }
+
+    </style>
+</head>
+<body>
+
+<!-- Rest van de HTML blijft hetzelfde -->
+
+</body>
+</html>

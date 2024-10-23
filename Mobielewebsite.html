@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assurantiekantoor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        nav {
+            background-color: #0033a0;
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .menu-item {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .menu-item:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .section {
+            background-color: white;
+            border: 1px solid lightblue;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .section img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        h3 {
+            margin-top: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #0033a0;
+            color: white;
+            position: relative;
+        }
+
+        /* Responsive styling */
+        @media (max-width: 768px) {
+            .menu-item {
+                padding: 15px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#Inloggen" class="menu-item">Inloggen Portaal</a>
+    <a href="#schade" class="menu-item">Schade melden</a>
+    <a href="#wijziging" class="menu-item">Doorgeven wijziging</a>
+    <a href="#dekker" class="menu-item">Dekker Autoverzekering</a>
+    <a href="#offerte" class="menu-item">Offerte aanvragen</a>
+    <a href="#polis" class="menu-item">Mijn NH1816 Polis</a>
+    <a href="#downloads" class="menu-item">Downloads</a>
+    <a href="#contact" class="menu-item">Contact</a>
+</nav>
+
+<div class="container">
+    <div class="section" id="over-ons">
+        <h3>Over Ons</h3>
+        <img src="kantoor.jpg" alt="Afbeelding van het kantoor">
+        <p>BV Assurantiekantoor Klaas Vis Ao. 1834 bestaat al 190 jaar en behoort daardoor bij de oudste Zaanse bedrijven...</p>
+    </div>
+
+    <div class="section" id="wat-wij-doen">
+        <h3>Wat Wij Aanbieden</h3>
+        <p>Totaalpakket aan schadeverzekeringen, zowel particulier als zakelijk, op maat.</p>
+    </div>
+
+    <div class="section" id="contact">
+        <h3>Contact</h3>
+        <p>Neem contact met ons op via telefoon of e-mail voor meer informatie.</p>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Assurantiekantoor Klaas Vis Ao. Alle rechten voorbehouden.</p>
+</footer>
+
+</body>
+</html>
